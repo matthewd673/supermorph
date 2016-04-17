@@ -1,0 +1,9 @@
+C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Super Morph\Super Morph\bin\Debug\Super Morph.exe.config
+C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Super Morph\Super Morph\bin\Debug\Super Morph.exe
+C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Super Morph\Super Morph\bin\Debug\Super Morph.pdb
+C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Super Morph\Super Morph\bin\Debug\neon2d.dll
+C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Super Morph\Super Morph\bin\Debug\neon2d.pdb
+C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Super Morph\Super Morph\obj\Debug\Super Morph.csprojResolveAssemblyReference.cache
+C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Super Morph\Super Morph\obj\Debug\Super Morph.exe
+C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Super Morph\Super Morph\obj\Debug\Super Morph.pdb
+C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Super Morph\Super Morph\bin\Debug\Microsoft.WebSockets.dll
