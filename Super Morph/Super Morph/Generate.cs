@@ -71,7 +71,7 @@ namespace Super_Morph
 
             if (canSpawn)
             {
-                int monsType = rng.Next(4);
+                int monsType = rng.Next(5);
                 monsters.Add(new GameObjects.mons(monsx, monsy, monsType));
                 if(Program.characterHealth > 0)
                 {
@@ -140,6 +140,18 @@ namespace Super_Morph
                     if (Program.characterHealth > 0)
                     {
                         Program.bulletsShot += 4;
+                    }
+                    break;
+
+                case 4:
+                    //spray in direction of player
+                    //calculate player direction (from simulateHoming)
+                    bullets.Add(Program.calculateViperStrengths(new GameObjects.mons(monsX, monsY, monsType)));
+                    bullets.Add(Program.calculateViperStrengths(new GameObjects.mons(monsX, monsY, monsType)));
+                    bullets.Add(Program.calculateViperStrengths(new GameObjects.mons(monsX, monsY, monsType)));
+                    if (Program.characterHealth > 0)
+                    {
+                        Program.bulletsShot += 3;
                     }
                     break;
             }

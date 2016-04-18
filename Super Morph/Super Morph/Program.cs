@@ -42,20 +42,18 @@ namespace Super_Morph
         //ui junk
         public static Prop scoreSheet;
         public static Prop singlePlayerButton;
-        public static Prop multiPlayerButton;
         public static Prop neon2dButton;
         public static Prop playAgainButton;
         public static Prop toMenuButton;
 
         public static Prop logo;
 
-        public static Prop multiplayerBackdrop;
-
         //enemies
         public static Prop spitter;
         public static Prop firebelcher;
         public static Prop ancientone;
         public static Prop snakeeyes;
+        public static Prop viper;
 
         //effects
         public static Prop explosionParticle;
@@ -127,6 +125,7 @@ namespace Super_Morph
         public static int firebelcherBulletSpawnInterval = 20;
         public static int ancientoneBulletSpawnInterval = 45;
         public static int snakeeyesBulletSpawnInterval = 10;
+        public static int viperBulletSpawnInterval = 20;
 
         //statistics
         public static int bulletsShot;
@@ -138,28 +137,12 @@ namespace Super_Morph
         //game
         public static Game g;
 
-        //pseudo string
-        public static string addressString;
-        public static bool type0 = false;
-        public static bool type1 = false;
-        public static bool type2 = false;
-        public static bool type3 = false;
-        public static bool type4 = false;
-        public static bool type5 = false;
-        public static bool type6 = false;
-        public static bool type7 = false;
-        public static bool type8 = false;
-        public static bool type9 = false;
-        public static bool typeperiod = false;
-        public static bool typeback = false;
-        public static bool typeenter = false;
-
         public static void start()
         {
 
             win.gamewindow.MouseClick += Gamewindow_MouseClick;
 
-            string prefix = Environment.CurrentDirectory + @"\";
+            string prefix = Environment.CurrentDirectory + @"\RESOURCES\";
             grass = new Prop(new Bitmap(prefix + "grass.png"), 32, 32);
             sand = new Prop(new Bitmap(prefix + "sand.png"), 32, 32);
             rock = new Prop(new Bitmap(prefix + "rock.png"), 32, 32);
@@ -175,17 +158,16 @@ namespace Super_Morph
             firebelcher = new Prop(new Bitmap(prefix + "firebelcher.png"), 32, 32);
             ancientone = new Prop(new Bitmap(prefix + "ancientone.png"), 32, 32);
             snakeeyes = new Prop(new Bitmap(prefix + "snakeeyes.png"), 32, 32);
+            viper = new Prop(new Bitmap(prefix + "viper.png"), 32, 32);
             explosionParticle = new Prop(new Bitmap(prefix + "explosion.png"), 32, 32);
             friendly = new Prop(new Bitmap(prefix + "friendly.png"), 32, 32);
             scepter = new Prop(new Bitmap(prefix + "scepter.png"), 16, 20);
             scoreSheet = new Prop(new Bitmap(prefix + "score-sheet.png"), 672, 672);
             singlePlayerButton = new Prop(new Bitmap(prefix + "singleplayer-button.png"), 124, 32);
-            multiPlayerButton = new Prop(new Bitmap(prefix + "multiplayer-button.png"), 124, 32);
             neon2dButton = new Prop(new Bitmap(prefix + "neon2d-button.png"), 124, 32);
             playAgainButton = new Prop(new Bitmap(prefix + "play-again-button.png"), 124, 32);
             toMenuButton = new Prop(new Bitmap(prefix + "to-menu-button.png"), 124, 32);
             logo = new Prop(new Bitmap(prefix + "big-logo.png"), 510, 190);
-            multiplayerBackdrop = new Prop(new Bitmap(prefix + "multiplayer-backdrop.png"), 620, 222);
 
             character = new Rect(0, 0, 24, 24);
 
@@ -358,6 +340,14 @@ namespace Super_Morph
                             if (placeholder.spawnTime == snakeeyesBulletSpawnInterval)
                             {
                                 Generate.shootBullets(placeholder.x, placeholder.y, 3);
+                                placeholder.spawnTime = -1;
+                            }
+                            break;
+
+                        case 4:
+                            if (placeholder.spawnTime == viperBulletSpawnInterval)
+                            {
+                                Generate.shootBullets(placeholder.x, placeholder.y, 4);
                                 placeholder.spawnTime = -1;
                             }
                             break;
@@ -748,6 +738,10 @@ namespace Super_Morph
                             scene.render(snakeeyes, placeholder.x, placeholder.y);
                             break;
 
+                        case 4:
+                            scene.render(viper, placeholder.x, placeholder.y);
+                            break;
+
                         default:
                             Console.WriteLine("something went wrong :/");
                             break;
@@ -1104,6 +1098,37 @@ namespace Super_Morph
             {
                 h.collisions.y -= h.speed;
             }
+        }
+
+        public static GameObjects.bullet calculateViperStrengths(GameObjects.mons m)
+        {
+            int monsX = m.x;
+            int monsY = m.y;
+
+            int strengthX = 0;
+            int strengthY = 0;
+
+            if (character.x > monsX)
+            {
+                strengthX = 1;
+            }
+            if (character.x < monsX)
+            {
+                strengthX = -1;
+            }
+            if (character.y > monsY)
+            {
+                strengthY = 1;
+            }
+            if (character.y < monsY)
+            {
+                strengthY = -1;
+            }
+
+            //put it all together
+            GameObjects.bullet final = new GameObjects.bullet(monsX, monsY, 1, strengthX, strengthY, Generate.bulletSpeed);
+
+            return final;
         }
 
 

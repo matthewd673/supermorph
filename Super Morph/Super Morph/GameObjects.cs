@@ -38,6 +38,10 @@ namespace Super_Morph
                         this.health = 10;
                         break;
 
+                    case 3:
+                        this.health = 15;
+                        break;
+
                     default:
                         this.health = 10;
                         break;
